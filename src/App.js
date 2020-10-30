@@ -1,6 +1,6 @@
 import * as React from "react";
 import {Admin, Resource, fetchUtils} from 'react-admin';
-import {objCreate, objEdit, objList} from "./Demo";
+import {objCreate, objEdit, objList} from "./CheckUpdate";
 
 import {stringify} from "query-string";
 
@@ -19,15 +19,18 @@ const myDataProvider = {
             filter: JSON.stringify(params.filter)
         };
         const url = `${apiUrl}/${resource}?${stringify(query)}`;
-        return httpClient(url).then(({headers, json}) => ({
-            data: json,
-            total: 10
-        }));
+
+        return httpClient(url).then(({headers, json}) => (
+            {
+                data: json.content,
+                total: 10 // xu li cho nay`, dang fix cung gia tri
+            }));
     },
-    getOne: (resource, params) =>
-        httpClient(`${apiUrl}/${resource}/${params.id}`).then(({json}) => ({
-            data: json,
-        })),
+    getOne: (resource, params) => {
+        return httpClient(`${apiUrl}/${resource}/${params.id}`).then(({headers, json}) => ({
+            data: json
+        }))
+    },
 
     getMany: (resource, params) => {
         const query = {
@@ -99,7 +102,7 @@ class AdminPanel extends React.Component {
         return (
             <div>
                 <Admin dataProvider={myDataProvider}>
-                    <Resource name='demo' list={objList} edit={objEdit} create={objCreate}/>
+                    <Resource name='CheckUpdate' list={objList} edit={objEdit} create={objCreate}/>
                 </Admin>
             </div>
         );
