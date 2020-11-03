@@ -1,17 +1,16 @@
 import * as React from "react";
-import {List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateTimeInput,DeleteButton, Pagination} from 'react-admin';
+import {List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateTimeInput,DeleteButton } from 'react-admin';
 
-const PostPagination = props => <Pagination rowsPerPageOptions={[5, 10, 15, 20, 25]} {...props} />;
 
 export const objList = props => (
-    <List {...props} pagination={<PostPagination />}>
+    <List {...props}>
         <Datagrid>
             <TextField source="id"/>
             <TextField source="tableName"/>
             <DateField source="updateTime" showTime />
             <TextField source="status"/>
-            <EditButton basePath="/update"/>
-            <DeleteButton basePath="/update"/>
+            <EditButton basePath="/CheckUpdate"/>
+            <DeleteButton basePath="/CheckUpdate"/>
         </Datagrid>
     </List>
 );
