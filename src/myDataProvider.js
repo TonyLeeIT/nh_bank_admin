@@ -21,6 +21,7 @@ export const myDataProvider = {
             {
                 data: json.content,
                 total: parseInt(json.totalElements, 10)
+
             }));
     },
     getOne: (resource, params) => {
