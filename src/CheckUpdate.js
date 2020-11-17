@@ -1,5 +1,5 @@
 import * as React from "react";
-import {Filter,List, Datagrid, Edit, Create, SimpleForm, DateField, TextField, EditButton, TextInput, DateTimeInput,DeleteButton } from 'react-admin';
+import {Filter,List, Datagrid, Edit, SimpleForm, DateField, TextField, TextInput, DateTimeInput } from 'react-admin';
 import SearchIcon from "@material-ui/icons/Search";
 import {InputAdornment } from "@material-ui/core";
 
@@ -21,8 +21,6 @@ export const objList = props => (
             <TextField source="tableName"/>
             <DateField source="updateTime"  showTime={true}/>
             <TextField source="status"/>
-            <EditButton basePath="/CheckUpdate"/>
-            <DeleteButton basePath="/CheckUpdate"/>
         </Datagrid>
     </List>
 );
@@ -38,13 +36,4 @@ export const objEdit = (props) => (
     </Edit>
 );
 
-export const objCreate = (props) => (
-    <Create{...props}>
-        <SimpleForm>
-        <TextInput source="tableName"/>
-        <DateTimeInput source="updateTime" />
-        <TextInput source="status"/>
-        </SimpleForm>
-    </Create>
-);
 
